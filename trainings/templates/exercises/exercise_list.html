@@ -1,0 +1,31 @@
+<!-- templates/exercises/exercise_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Moje ćwiczenia</h2>
+    <a href="{% url 'exercise_create' %}" class="btn btn-primary mb-3">Dodaj nowe ćwiczenie</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Partia ciała</th>
+                <th>Data dodania</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exercise in exercises %}
+            <tr>
+                <td>{{ exercise.name }}</td>
+                <td>{{ exercise.part }}</td>
+                <td>{{ exercise.date_added }}</td>
+                <td>
+                    <a href="{% url 'exercise_delete' exercise.pk %}" class="btn btn-danger btn-sm">Usuń</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
